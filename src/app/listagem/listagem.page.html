@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Exibir Clientes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	 <ion-card *ngFor="let post of posts">
+		 <ion-avatar>
+	     	 <ion-img src="{{post.avatar}}"></ion-img>
+	     </ion-avatar>
+      <ion-card-header>
+
+
+        <ion-card-title>{{post.first_name}} {{post.last_name}}
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <p>
+          {{post.email}}
+        </p>
+        <br>
+        <br>
+
+        <ion-button ion-button expand="block" color="dark" (click)="presentModal(post)" large>Leia</ion-button>
+
+        <ion-button ion-button  expand="block"  large  color="success" (click)="edit(post)"  >Atualizar</ion-button>
+
+
+        <ion-button ion-button expand="block" color="danger" (click)="delete(post)" large>Delete</ion-button>
+
+
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll treshold="100px" (ionInfinite) = "loadMoreData($event)">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

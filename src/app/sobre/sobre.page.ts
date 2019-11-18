@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-sobre',
   templateUrl: './sobre.page.html',
@@ -31,5 +32,7 @@ export class SobrePage implements OnInit {
 
 
   }
+
+  
 
 }

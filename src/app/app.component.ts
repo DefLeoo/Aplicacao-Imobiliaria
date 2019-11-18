@@ -20,6 +20,16 @@ export class AppComponent {
       title: 'Sobre',
       url: '/sobre',
       icon: 'ios-chatbubbles'
+    },
+    {
+      title: 'Cadastrar Clientes',
+      url: '/formulario',
+      icon: 'ios-contact'
+    },
+    {
+      title: 'Listar Clientes',
+      url: '/listagem',
+      icon: 'ios-list-box'
     }
   ];
 

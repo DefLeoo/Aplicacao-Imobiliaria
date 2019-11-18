@@ -18,6 +18,18 @@ const routes: Routes = [
   {
     path: 'sobre',
     loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
+  {
+    path: 'listagem',
+    loadChildren: () => import('./listagem/listagem.module').then( m => m.ListagemPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   }
 ];
 
