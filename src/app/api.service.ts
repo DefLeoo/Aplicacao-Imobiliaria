@@ -10,7 +10,8 @@ export class ApiService {
 
 
   getPosts(page){
-  		return this.httpClient.get(`https://reqres.in/api/users?page=${page}`);
+  		//return this.httpClient.get(`https://reqres.in/api/users?page=${page}`);
+      return this.httpClient.get(`https://jsonplaceholder.typicode.com/posts?page=${page}`);
   	}
 
   sendPostRequest(postData){
@@ -19,10 +20,10 @@ export class ApiService {
   			headers: new HttpHeaders({
   				'Accept': 'application/json',
   				'Content-Type': 'application/json'
-  			}),
-  		}
+  			})
+  		};
 
-  		return this.httpClient.post("https://reqres.in/api/users", postData, httpOpitions);
+  		return this.httpClient.post("https://jsonplaceholder.typicode.com/posts", postData, httpOpitions);
   	}
 
 
@@ -35,7 +36,10 @@ export class ApiService {
         }),
       }
 
-      return this.httpClient.put('https://reqres.in/api/users/${id}', postData, httpOpitions);
+      
+      //return this.httpClient.put('http https://swapi.co/api/people/${id}', postData, httpOpitions);
+      return this.httpClient.put('https://jsonplaceholder.typicode.com/posts/${id}', postData, httpOpitions);
+
     }
 
     sendDeleteRequest(id){
@@ -47,7 +51,7 @@ export class ApiService {
         }),
       }
 
-      return this.httpClient.delete('https://reqres.in/api/users/${id}', httpOpitions);
+      return this.httpClient.delete('https://jsonplaceholder.typicode.com/posts/${id}');
     }
 
 

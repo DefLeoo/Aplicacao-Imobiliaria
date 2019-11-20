@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Cadastrar Clientes 
+      Criar Postagem
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
    <ion-card class="welcome-card">
       <img src="/assets/6.png" alt=""/>
       <ion-card-header>
-        <ion-card-subtitle>Cadastro de Clientes Imóvel</ion-card-subtitle>
+        <ion-card-subtitle>Cadastro de Postagem para Blog</ion-card-subtitle>
 
       </ion-card-header>
      
@@ -25,30 +25,43 @@
    
    <form (ngSubmit)="formSubmit()">
 
-       <ion-item>
-			<ion-label>E-mail:</ion-label>
-			<ion-input type="email"  [(ngModel)]="dadosPessoa.email" name="email" required></ion-input>
+    <ion-item>
+			<ion-label>Titulo:</ion-label>
+			   <ion-input type="text"  [(ngModel)]="formData.title" name="title" required></ion-input>
 		</ion-item>
 
-		<ion-item>
-			<ion-label>Nome:</ion-label>
-			<ion-input type="text" [(ngModel)]="dadosPessoa.first_name" name="first_name" required></ion-input>
-		</ion-item>
+    <ion-item>
+      <ion-label>Texto:</ion-label>
+        
+          <ion-textarea type="text"  [(ngModel)]="formData.body" name="body" required></ion-textarea>
+    </ion-item>
 
-		<ion-item>
-			<ion-label>Sobrenome:</ion-label>
-			<ion-input type="text" [(ngModel)]="dadosPessoa.last_namee" name="last_name" required></ion-input>
-		</ion-item>
+<!--
+     <ion-item>
+      <ion-label>Email</ion-label>
+         <ion-input type="text"  [(ngModel)]="dadosPessoa.email" name="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fone</ion-label>
+         <ion-input type="text"  [(ngModel)]="dadosPessoa.phone" name="phone" required></ion-input>
+    </ion-item>
+
+     <ion-item>
+      <ion-label>Fone</ion-label>
+         <ion-input type="text"  [(ngModel)]="dadosPessoa.website" name="website" required></ion-input>
+    </ion-item>
+
+
+	
+-->
+		
 
 		<ion-button color="primary" type="submit" expand="block"> Cadastrar </ion-button>
 
 
    	</form>
 
-    <ion-footer>
-    <ion-toolbar>
-      <ion-title>Imóvel TC</ion-title>
-    </ion-toolbar>
-  </ion-footer>
+    
 
 </ion-content>

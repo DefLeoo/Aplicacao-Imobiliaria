@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -9,29 +10,64 @@ import { ApiService } from '../api.service';
 })
 export class FormularioPage implements OnInit {
 
-	dadosPessoa = {
-	 	email: '',
-	 	first_name: '',
-	 	last_name: ''
+	formData = {
+    id: '',
+	 	name: '',
+	 	body: ''
+	 	
 	 }
 
-  constructor(private apiService: ApiService, private alertController: AlertController) { }
+  constructor(private apiService: ApiService, private alertController: AlertController, private route: ActivatedRoute, private router: Router) { 
+
+
+      this.route.queryParams.subscribe(params => {
+      console.log(this.router.getCurrentNavigation().extras.state);
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.formData.id = this.router.getCurrentNavigation().extras.state.formDataParams.id;
+        this.formData.name = this.router.getCurrentNavigation().extras.state.formDataParams.name;
+        this.formData.body = this.router.getCurrentNavigation().extras.state.formDataParams.body;
+      }
+    });
+
+
+
+
+  }
 
   ngOnInit() {
   }
 
   async formSubmit(){
 
-    await this.apiService.sendPostRequest(this.dadosPessoa).subscribe((data)=>{
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
+    if(this.formData.id){ //Atualizar
+
+      await this.apiService.sendPutRequest(this.formData.id, this.formData).subscribe((data)=>{
+        console.log(data);
+      }, error => {
+        console.log(error);
+      });
+
+    }
+    else{ //Criar
+
+      await this.apiService.sendPostRequest(this.formData).subscribe((data)=>{
+        console.log(data);
+      }, error => {
+        console.log(error);
+      });
+
+    }
+
+    //await this.apiService.sendPostRequest(this.dadosPessoa).subscribe((data)=>{
+      //console.log(data);
+   // }, error => {
+   //   console.log(error);
+   // });
 
     const alert = await this.alertController.create({
       header: 'Alerta!',
-      subHeader: 'Cadastro de Clientes',
-      message: 'Cliente cadastrado com Sucesso.',
+      subHeader: 'Postagem Blog',
+      message: 'Postagem cadastrado com Sucesso.',
       buttons: ['OK']
     });
 

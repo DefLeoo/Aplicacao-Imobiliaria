@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../api.service';
-import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ListagemPage implements OnInit {
   public page:any;
   public total_page:any;
 
-  constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController) { 
+  constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController, private router: Router) { 
      
      this.page = 1;
 
@@ -44,12 +44,11 @@ export class ListagemPage implements OnInit {
   }
 
   async presentModal(post) {
-    const modal = await this.modalController.create({
+     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
-      	'email': post.email,
-        'firstName': post.first_name,
-        'lastName': post.last_name,
+        'title': post.title,
+        'body': post.body,
         'modalController': this.modalController
       }
     });
@@ -58,41 +57,61 @@ export class ListagemPage implements OnInit {
 
   async edit(post){
 
-    let dadosPessoa = {
-      "email": "leo@gmail.com",
-      "first_name": "Leo",
-      "last_name": "Pulicidade"
-    }
-   
-   await this.apiService.sendPutRequest(dadosPessoa, post.id).subscribe((data)=>{
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
+    let navigationExtras: NavigationExtras = {
+      state: {
+        formDataParams: post
+      }
+    };
+    this.router.navigate(['/formulario'], navigationExtras);
 
-    const alert = await this.alertController.create({
-      header: 'Alerta!',
-      subHeader: 'Atualizar API',
-      message: 'Dados atualizados ('+post.first_name+' '+ post.last_name+') com sucesso.',
-      buttons: ['OK']
-    });
+    //let dadosPessoa = {
+  //    "title": "Leo",
+   //   "body": "Dru" 
+  //  }
+   
+  // await this.apiService.sendPutRequest(dadosPessoa, post.id).subscribe((data)=>{
+  //    console.log(data);
+  //  }, error => {
+   //   console.log(error);
+   // });
+
+   // const alert = await this.alertController.create({
+    //  header: 'Alerta!',
+     // subHeader: 'Atualizar Clientes',
+     // message: 'Cliente deletado com sucesso.',
+   //  // buttons: ['OK']
+   // });
 }
   
     async delete(post){
 
-      await this.apiService.sendDeleteRequest(post.id).subscribe((data)=>{
+      //await this.apiService.sendDeleteRequest(post.id).subscribe((data)=>{
+     // console.log(data);
+   // }, error => {
+     // console.log(error);
+  //  });
+
+   // const alert = await this.alertController.create({
+    //  header: 'Alerta!',
+    //  subHeader: 'Deletar Cliente',
+     // message: 'Cliente deletado com sucesso.',
+    //  buttons: ['OK']
+   // });
+    
+    await this.apiService.sendDeleteRequest(post.id).subscribe((data)=>{
       console.log(data);
+      let index = this.posts.indexOf(post);
+      this.posts.splice(index, 1);
     }, error => {
       console.log(error);
     });
 
     const alert = await this.alertController.create({
       header: 'Alerta!',
-      subHeader: 'Deletar Cliente',
-      message: 'Cliente deletado com sucesso.',
+      subHeader: 'Deletado!',
+      message: 'Item excluído com sucesso!',
       buttons: ['OK']
     });
-
 
 
       await alert.present();

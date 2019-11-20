@@ -12,24 +12,21 @@
 <ion-content>
 
 	 <ion-card *ngFor="let post of posts">
-		 <ion-avatar>
-	     	 <ion-img src="{{post.avatar}}"></ion-img>
-	     </ion-avatar>
+
+	     
       <ion-card-header>
 
 
-        <ion-card-title>{{post.first_name}} {{post.last_name}}
+        <ion-card-title>{{post.title}} {{post.body}}
         </ion-card-title>
       </ion-card-header>
       
       <ion-card-content>
-        <p>
-          {{post.email}}
-        </p>
+        
         <br>
         <br>
 
-        <ion-button ion-button expand="block" color="dark" (click)="presentModal(post)" large>Leia</ion-button>
+        <ion-button ion-button expand="block" color="dark" (click)="presentModal(post)" large>Detalhes</ion-button>
 
         <ion-button ion-button  expand="block"  large  color="success" (click)="edit(post)"  >Atualizar</ion-button>
 
