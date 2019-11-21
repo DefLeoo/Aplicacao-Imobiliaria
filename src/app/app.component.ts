@@ -22,12 +22,12 @@ export class AppComponent {
       icon: 'ios-chatbubbles'
     },
     {
-      title: 'Criar Post',
+      title: 'Cadastrar Cliente',
       url: '/formulario',
       icon: 'ios-contact'
     },
     {
-      title: 'Listar Posts',
+      title: 'Listar Clientes',
       url: '/listagem',
       icon: 'ios-list-box'
     }

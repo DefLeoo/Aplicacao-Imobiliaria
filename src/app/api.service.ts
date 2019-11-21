@@ -11,7 +11,7 @@ export class ApiService {
 
   getPosts(page){
   		//return this.httpClient.get(`https://reqres.in/api/users?page=${page}`);
-      return this.httpClient.get(`https://jsonplaceholder.typicode.com/posts?page=${page}`);
+      return this.httpClient.get(`https://jsonplaceholder.typicode.com/users?page=${page}`);
   	}
 
   sendPostRequest(postData){
@@ -23,35 +23,28 @@ export class ApiService {
   			})
   		};
 
-  		return this.httpClient.post("https://jsonplaceholder.typicode.com/posts", postData, httpOpitions);
+  		return this.httpClient.post("https://jsonplaceholder.typicode.com/users", postData, httpOpitions);
   	}
 
 
-    sendPutRequest(postData, id){
+    sendPutRequest(id, postData){
 
       const httpOpitions = {
         headers: new HttpHeaders({
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }),
-      }
+        })
+      };
 
       
       //return this.httpClient.put('http https://swapi.co/api/people/${id}', postData, httpOpitions);
-      return this.httpClient.put('https://jsonplaceholder.typicode.com/posts/${id}', postData, httpOpitions);
+      return this.httpClient.put('https://jsonplaceholder.typicode.com/users/${id}', postData, httpOpitions);
 
     }
 
-    sendDeleteRequest(id){
+    sendDeleteRequest(id){     
 
-      const httpOpitions = {
-        headers: new HttpHeaders({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }),
-      }
-
-      return this.httpClient.delete('https://jsonplaceholder.typicode.com/posts/${id}');
+      return this.httpClient.delete('https://jsonplaceholder.typicode.com/users/${id}');
     }
 
 

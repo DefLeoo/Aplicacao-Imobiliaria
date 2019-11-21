@@ -13,7 +13,10 @@ export class FormularioPage implements OnInit {
 	formData = {
     id: '',
 	 	name: '',
-	 	body: ''
+    username: '',
+    email: '',
+    phone: '',
+	 	website: ''
 	 	
 	 }
 
@@ -22,10 +25,13 @@ export class FormularioPage implements OnInit {
 
       this.route.queryParams.subscribe(params => {
       console.log(this.router.getCurrentNavigation().extras.state);
-      if (this.router.getCurrentNavigation().extras.state) {
+       if (this.router.getCurrentNavigation().extras.state) {
         this.formData.id = this.router.getCurrentNavigation().extras.state.formDataParams.id;
         this.formData.name = this.router.getCurrentNavigation().extras.state.formDataParams.name;
-        this.formData.body = this.router.getCurrentNavigation().extras.state.formDataParams.body;
+        this.formData.username = this.router.getCurrentNavigation().extras.state.formDataParams.username;
+        this.formData.email = this.router.getCurrentNavigation().extras.state.formDataParams.email;
+        this.formData.phone = this.router.getCurrentNavigation().extras.state.formDataParams.phone;
+        this.formData.website = this.router.getCurrentNavigation().extras.state.formDataParams.website;
       }
     });
 

@@ -15,7 +15,7 @@
    <ion-card class="welcome-card">
       <img src="/assets/6.png" alt=""/>
       <ion-card-header>
-        <ion-card-subtitle>Cadastro de Postagem para Blog</ion-card-subtitle>
+        <ion-card-subtitle>Cadastrar um novo Cliente</ion-card-subtitle>
 
       </ion-card-header>
      
@@ -26,14 +26,29 @@
    <form (ngSubmit)="formSubmit()">
 
     <ion-item>
-			<ion-label>Titulo:</ion-label>
-			   <ion-input type="text"  [(ngModel)]="formData.title" name="title" required></ion-input>
+			<ion-label>Nome:</ion-label>
+			   <ion-input type="text"  [(ngModel)]="formData.name" name="email" required></ion-input>
 		</ion-item>
 
     <ion-item>
-      <ion-label>Texto:</ion-label>
+      <ion-label>Apelido:</ion-label>
+         <ion-input type="text"  [(ngModel)]="formData.username" name="username" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email:</ion-label>
         
-          <ion-textarea type="text"  [(ngModel)]="formData.body" name="body" required></ion-textarea>
+          <ion-textarea type="text"  [(ngModel)]="formData.email" name="email" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fone:</ion-label>
+         <ion-input type="text"  [(ngModel)]="formData.phone" name="phone" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Website:</ion-label>
+         <ion-input type="text"  [(ngModel)]="formData.website" name="website" required></ion-input>
     </ion-item>
 
 <!--

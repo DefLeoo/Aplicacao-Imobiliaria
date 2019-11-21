@@ -47,8 +47,11 @@ export class ListagemPage implements OnInit {
      const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
-        'title': post.title,
-        'body': post.body,
+        'name': post.name,
+        'username': post.username,
+        'email': post.email,
+        'phone': post.phone,
+        'website': post.website,
         'modalController': this.modalController
       }
     });
@@ -63,6 +66,9 @@ export class ListagemPage implements OnInit {
       }
     };
     this.router.navigate(['/formulario'], navigationExtras);
+
+
+
 
     //let dadosPessoa = {
   //    "title": "Leo",
