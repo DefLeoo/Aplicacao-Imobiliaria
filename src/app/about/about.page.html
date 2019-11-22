@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sobre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+   <ion-card class="welcome-card">
+
+      <img src="/assets/5.jpg" alt="" />
+        <h1>Quem Somos</h1>
+        <p>Nasce um novo conceito de imobiliraria para Três Corações e Região, com uma nova forma de intermediar a compra e venda imóveis, oferecendo um atendimento qualificado, com foco em segurança e qualidade de vida para nossos clientes.
+
+        Devidamente Credenciada junto ao Creci-MG pelo numero 0005575,  utilizando uma rede de Corretores, Portais, Investidores e a tecnologia, /p>
+
+        <br>
+        <br>
+
+      </ion-card>
+
+      <ion-card class="welcome-card">
+
+      <form > 
+
+              <h1>Entrar em Contato</h1>
+
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input type="text"   name="name" required ></ion-input>
+          </ion-item>
+
+          
+        <ion-item>
+          <ion-label>Telefone</ion-label>
+          <ion-input type="text"  name="fone"  required></ion-input>
+        </ion-item>
+
+        <ion-item>
+           <ion-label>Dúvidas</ion-label>
+               <ion-textarea placeholder="" required></ion-textarea>
+            </ion-item>
+
+
+        <ion-button type="submit" expand="block" (click)="presentAlert()">Enviar</ion-button>
+
+       </form>
+
+       </ion-card>
+
+      <br>
+
+
+
+
+</ion-content>

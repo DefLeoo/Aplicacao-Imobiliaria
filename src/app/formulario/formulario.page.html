@@ -1,18 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+  	<ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Criar Postagem
-    </ion-title>
+    <ion-title>formulario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  
 
-
-   <ion-card class="welcome-card">
+  <ion-card class="welcome-card">
       <img src="/assets/6.png" alt=""/>
       <ion-card-header>
         <ion-card-subtitle>Cadastrar um novo Cliente</ion-card-subtitle>
@@ -27,7 +25,7 @@
 
     <ion-item>
 			<ion-label>Nome:</ion-label>
-			   <ion-input type="text"  [(ngModel)]="formData.name" name="email" required></ion-input>
+			   <ion-input type="text"  [(ngModel)]="formData.name" name="name" required></ion-input>
 		</ion-item>
 
     <ion-item>
@@ -37,8 +35,7 @@
 
     <ion-item>
       <ion-label>Email:</ion-label>
-        
-          <ion-textarea type="text"  [(ngModel)]="formData.email" name="email" required></ion-textarea>
+         <ion-input type="text"  [(ngModel)]="formData.email" name="email" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -77,6 +74,39 @@
 
    	</form>
 
-    
+
+
+
+ <!--
+	<form (ngSubmit)="formSubmit()">
+		<ion-item>
+			<ion-label>Name</ion-label>
+        	<ion-input type="text" [(ngModel)]="formData.name" name="name" required></ion-input>
+     	</ion-item>
+      	<ion-item>
+        	<ion-label>url</ion-label>
+        	<ion-textarea [(ngModel)]="formData.job" name="job" required></ion-textarea>
+		</ion-item>
+		<ion-button type="submit" expand="block">Enviar</ion-button>
+	</form>
+		
+		<ion-item>
+			<ion-label>E-mail</ion-label>
+			<ion-input type="email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label>First Name</ion-label>
+			<ion-input type="text"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label>Last Name</ion-label>
+			<ion-input type="text"></ion-input>
+		</ion-item>
+
+		<ion-button color="primary" type="submit"> Enviar </ion-button> -->
+
+
 
 </ion-content>

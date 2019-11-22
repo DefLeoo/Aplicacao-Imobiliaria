@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from '../api.service';
+import { ApiService} from '../api.service';
+import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 
 
@@ -10,41 +11,45 @@ import { Router, NavigationExtras } from '@angular/router';
   templateUrl: './listagem.page.html',
   styleUrls: ['./listagem.page.scss'],
 })
-
 export class ListagemPage implements OnInit {
 
-  public posts:any;
-  public page:any;
-  public total_page:any;
+  public posts: any;
+  public results: any;
+  public count: any;
+  public next: any;
 
-  constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController, private router: Router) { 
-     
-     this.page = 1;
+  // public page:any;
+  // public total_page:any;
 
-    this.apiService.getPosts(this.page).subscribe((data:any)=>{
-      console.log(data);
-      this.total_page = data.total_page;
-      this.posts = data.data;
+  constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController, private router: Router) {
+
+    this.next = 1;
+
+    this.apiService.getPosts(this.next).subscribe((results:any)=>{
+      console.log(results);
+      this.count = results.count;
+      this.posts = results.results;
       });
-   
-   }
+ 
+    }
 
-    loadMoreData(event) {
+  loadMoreData(event) {
 
-    this.page++;
+    this.count++;
 
-    this.apiService.getPosts(this.page).subscribe((data:any)=>{
-      this.posts = this.posts.concat(data.data);
+    this.apiService.getPosts(this.next).subscribe((results:any)=>{
+      this.posts = this.posts.concat(results.results);
 
       event.target.complete();
-      if (this.total_page == this.page) {
+      if (this.count == this.next) {
         event.target.disabled = true;
       }
     });
   }
 
+
   async presentModal(post) {
-     const modal = await this.modalController.create({
+    const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
         'name': post.name,
@@ -58,7 +63,9 @@ export class ListagemPage implements OnInit {
     return await modal.present();
   }
 
-  async edit(post){
+
+
+  async edit(post) {
 
     let navigationExtras: NavigationExtras = {
       state: {
@@ -66,67 +73,37 @@ export class ListagemPage implements OnInit {
       }
     };
     this.router.navigate(['/formulario'], navigationExtras);
+  }
 
-
-
-
-    //let dadosPessoa = {
-  //    "title": "Leo",
-   //   "body": "Dru" 
-  //  }
    
-  // await this.apiService.sendPutRequest(dadosPessoa, post.id).subscribe((data)=>{
-  //    console.log(data);
-  //  }, error => {
-   //   console.log(error);
-   // });
 
-   // const alert = await this.alertController.create({
-    //  header: 'Alerta!',
-     // subHeader: 'Atualizar Clientes',
-     // message: 'Cliente deletado com sucesso.',
-   //  // buttons: ['OK']
-   // });
-}
-  
+
+
     async delete(post){
 
-      //await this.apiService.sendDeleteRequest(post.id).subscribe((data)=>{
-     // console.log(data);
-   // }, error => {
-     // console.log(error);
-  //  });
-
-   // const alert = await this.alertController.create({
-    //  header: 'Alerta!',
-    //  subHeader: 'Deletar Cliente',
-     // message: 'Cliente deletado com sucesso.',
-    //  buttons: ['OK']
-   // });
-    
-    await this.apiService.sendDeleteRequest(post.id).subscribe((data)=>{
-      console.log(data);
+      await this.apiService.sendDeleteRequest(post.id).subscribe((results)=>{
+      console.log(results);
       let index = this.posts.indexOf(post);
       this.posts.splice(index, 1);
     }, error => {
       console.log(error);
     });
 
+  
     const alert = await this.alertController.create({
       header: 'Alerta!',
-      subHeader: 'Deletado!',
-      message: 'Item excluído com sucesso!',
+      subHeader: 'Cliente API Deletado!',
+      message: 'Dados removidos com sucesso.',
       buttons: ['OK']
     });
 
+        await alert.present();
 
-      await alert.present();
   
   }
 
+  ngOnInit(){
 
-  ngOnInit() {
   }
-
 
 }
