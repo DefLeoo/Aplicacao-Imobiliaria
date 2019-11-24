@@ -19,7 +19,8 @@ export class ListagemPage implements OnInit {
   public count: any;
   public next: any;
 
-  // public page:any;
+  
+   //public page:any;
   // public total_page:any;
 
   constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController, private router: Router) {
@@ -52,7 +53,6 @@ export class ListagemPage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
-        'id' : post.id,
         'name': post.name,
         'email': post.email,
         'modalController': this.modalController

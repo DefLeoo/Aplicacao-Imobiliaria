@@ -48,6 +48,7 @@ export class FormularioPage implements OnInit {
         console.log(error);
       });
 
+
     }
     else{ //Criar
 
@@ -65,6 +66,7 @@ export class FormularioPage implements OnInit {
    //   console.log(error);
    // });
 
+  
     const alert = await this.alertController.create({
       header: 'Alerta!',
       subHeader: 'Cliente API',

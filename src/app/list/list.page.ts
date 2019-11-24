@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+import { AlertController} from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +11,93 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+   public posts: any;
+  public results: any;
+  public count: any;
+  public next: any;
+
+  
+   //public page:any;
+  // public total_page:any;
+
+  constructor(private apiService: ApiService, private modalController: ModalController, private alertController: AlertController, private router: Router) {
+
+    this.next = 1;
+
+    this.apiService.getPosts(this.next).subscribe((results:any)=>{
+      console.log(results);
+      this.count = results.count;
+      this.posts = results.results;
       });
+ 
     }
+
+  loadMoreData(event) {
+
+    this.count++;
+
+    this.apiService.getPosts(this.next).subscribe((results:any)=>{
+      this.posts = this.posts.concat(results.results);
+
+      event.target.complete();
+      if (this.count == this.next) {
+        event.target.disabled = true;
+      }
+    });
   }
 
-  ngOnInit() {
+  async presentModal(post) {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        'name': post.name,
+        'email': post.email,
+        'modalController': this.modalController
+      }
+    });
+    return await modal.present();
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+
+
+  async edit(post) {
+
+    let navigationExtras: NavigationExtras = {
+      state: {
+        formDataParams: post
+      }
+    };
+    this.router.navigate(['/formulario'], navigationExtras);
+  }
+
+  
+
+
+    async delete(post){
+
+      await this.apiService.sendDeleteRequest(post.id).subscribe((results)=>{
+      console.log(results);
+      let index = this.posts.indexOf(post);
+      this.posts.splice(index, 1);
+    }, error => {
+      console.log(error);
+    });
+
+    
+    
+    const alert = await this.alertController.create({
+      header: 'Alerta!',
+      subHeader: 'Cliente API Deletado!',
+      message: 'Cliente removido com sucesso.',
+      buttons: ['OK']
+    });
+
+        await alert.present();
+
+  
+  }
+
+  ngOnInit(){
+
+  }
 }
