@@ -17,9 +17,9 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Exibir Clientes',
-      url: '/listagem',
-      icon: 'list'
+      title: 'Sobre',
+      url: '/sobre',
+      icon: 'ios-chatbubbles'
     },
     {
       title: 'Cadastrar Cliente',
@@ -27,9 +27,9 @@ export class AppComponent {
       icon: 'ios-contact'
     },
     {
-      title: 'Sobre',
-      url: '/about',
-      icon: 'ios-chatbubbles'
+      title: 'Listar Cliente',
+      url: '/listagem',
+      icon: 'ios-list-box'
     }
   ];
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService} from '../api.service';
+import { ApiService } from '../api.service';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { AlertController } from '@ionic/angular';
+import { AlertController} from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 
 
@@ -11,6 +11,7 @@ import { Router, NavigationExtras } from '@angular/router';
   templateUrl: './listagem.page.html',
   styleUrls: ['./listagem.page.scss'],
 })
+
 export class ListagemPage implements OnInit {
 
   public posts: any;
@@ -47,16 +48,13 @@ export class ListagemPage implements OnInit {
     });
   }
 
-
   async presentModal(post) {
     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
+        'id' : post.id,
         'name': post.name,
-        'username': post.username,
         'email': post.email,
-        'phone': post.phone,
-        'website': post.website,
         'modalController': this.modalController
       }
     });
@@ -75,8 +73,7 @@ export class ListagemPage implements OnInit {
     this.router.navigate(['/formulario'], navigationExtras);
   }
 
-   
-
+  
 
 
     async delete(post){
@@ -89,11 +86,12 @@ export class ListagemPage implements OnInit {
       console.log(error);
     });
 
-  
+    
+    
     const alert = await this.alertController.create({
       header: 'Alerta!',
       subHeader: 'Cliente API Deletado!',
-      message: 'Dados removidos com sucesso.',
+      message: 'Cliente removido com sucesso.',
       buttons: ['OK']
     });
 

@@ -1,28 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListagemPage } from './listagem.page';
-import { ModalPage } from '../modal/modal.page';
+import { ListagemPageRoutingModule } from './listagem-routing.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ListagemPage
-  }
-];
+import { ListagemPage } from './listagem.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    ListagemPageRoutingModule
   ],
-  declarations: [ListagemPage,ModalPage],
-  entryComponents: [ModalPage]
+  declarations: [ListagemPage]
 })
 export class ListagemPageModule {}

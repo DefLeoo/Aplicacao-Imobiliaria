@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FormularioPage } from './formulario.page';
+import { FormularioPageRoutingModule } from './formulario-routing.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: FormularioPage
-  }
-];
+import { FormularioPage } from './formulario.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    FormularioPageRoutingModule
   ],
   declarations: [FormularioPage]
 })

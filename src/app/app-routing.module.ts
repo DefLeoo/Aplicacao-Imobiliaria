@@ -15,16 +15,22 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { 
+  {
+    path: 'sobre',
+    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
+  },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
+  {
     path: 'listagem',
-    loadChildren: './listagem/listagem.module#ListagemPageModule'
+    loadChildren: () => import('./listagem/listagem.module').then( m => m.ListagemPageModule)
   },
-  { 
-    path: 'about',
-    loadChildren: './about/about.module#AboutPageModule'
-  },
-  { path: 'formulario', loadChildren: './formulario/formulario.module#FormularioPageModule' },
-  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' }
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  }
 ];
 
 @NgModule({

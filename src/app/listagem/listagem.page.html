@@ -2,44 +2,40 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>      
-    <ion-title>Exibir Clientes</ion-title>
+    </ion-buttons>
+    <ion-title>
+      Exibir Clientes
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <ion-card *ngFor="let post of posts">
-      <ion-img src="https://pokemongohub.net/wp-content/uploads/2018/12/pvp.jpg" alt=""></ion-img>
+
+      
+      <ion-card *ngFor="let post of posts">
+      <ion-img src="https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjlob_gvoHmAhWOUt8KHfaGC-AQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.versadaimoveis.com.br%2Fblog%2Ftudo-que-voce-precisa-saber-sobre-trabalho-do-corretor-de-imoveis&psig=AOvVaw3jgusHgaTmn4h877xnjRuT&ust=1574638252614871" alt=""></ion-img>
       <ion-card-header>
         <ion-card-title>{{post.name}} 
         </ion-card-title>
       </ion-card-header>
-
       
       <ion-card-content>
         <p>
-          {{post.username}} {{post.email}} {{post.phone}} {{post.website}}
+          {{post.email}}
         </p>
 
-      
-       <ion-button ion-button expand="block" color="dark" (click)="presentModal(post)" large>Detalhes</ion-button>
+
+        
+        <ion-button ion-button expand="block" color="dark" (click)="presentModal(post)" large>Detalhes</ion-button>
 
         <ion-button ion-button  expand="block"  large  color="success" (click)="edit(post)"  >Atualizar</ion-button>
 
 
         <ion-button ion-button expand="block" color="danger" (click)="delete(post)" large>Delete</ion-button>
 
-  <!--
-        <ion-button ion-button fill="outline" color="dark" (click)="edit(post)" small>Edit</ion-button>
 
 
-        <ion-button ion-button fill="outline" color="danger" (click)="delete(post)" small>Delete</ion-button>
-
-
-        <ion-button ion-button fill="outline" (click)="presentModal(post)" large>Read full article</ion-button>
-
-      -->
       </ion-card-content>
     </ion-card>
 
@@ -50,5 +46,5 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
-
+  
 </ion-content>

@@ -7,23 +7,22 @@ import {ModalController } from '@ionic/angular';
   styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
-
-  // public modalController: ModalController;
-
-	// Data passed in by componentProps
-	@Input() name: string;
-	@Input() url: string;
+    
+  @Input() name: string;
+	@Input() email: string;
 	@Input() modalController: ModalController;
+
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  dismissModal() {
+ dismissModal() {
   	this.modalController.dismiss({
   		'dismiss': true
   	});
   }
+
 
 }
