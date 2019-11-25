@@ -54,7 +54,7 @@ export class ListagemPage implements OnInit {
       component: ModalPage,
       componentProps: {
         'name': post.name,
-        'email': post.email,
+        'gender': post.gender,
         'modalController': this.modalController
       }
     });

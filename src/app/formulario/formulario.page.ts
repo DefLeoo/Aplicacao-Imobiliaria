@@ -13,7 +13,7 @@ export class FormularioPage implements OnInit {
 	formData = {
     id: '',
 	 	name: '',    
-    email: ''
+    gender: ''
    
 	 	
 	 }
@@ -26,7 +26,7 @@ export class FormularioPage implements OnInit {
        if (this.router.getCurrentNavigation().extras.state) {
         this.formData.id = this.router.getCurrentNavigation().extras.state.formDataParams.id;
         this.formData.name = this.router.getCurrentNavigation().extras.state.formDataParams.name;
-        this.formData.email = this.router.getCurrentNavigation().extras.state.formDataParams.email;
+        this.formData.gender = this.router.getCurrentNavigation().extras.state.formDataParams.gender;
       }
     });
 

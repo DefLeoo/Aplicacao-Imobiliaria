@@ -9,7 +9,7 @@ import {ModalController } from '@ionic/angular';
 export class ModalPage implements OnInit {
     
   @Input() name: string;
-	@Input() email: string;
+	@Input() gender: string;
 	@Input() modalController: ModalController;
 
 
